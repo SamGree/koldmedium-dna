@@ -107,6 +107,12 @@ div[data-testid="stNumberInput"] label {{
     }}
 }}
 
+/* Add this CSS rule to your existing <style> block */
+footer {{
+    visibility: hidden;
+    display: none; /* Helps ensure no empty space is left behind */
+}}
+
    
 </style>
 """, unsafe_allow_html=True)
