@@ -88,7 +88,12 @@ div[data-testid="stNumberInput"] label {{
         border-radius: 10px;
     }}
 
-    
+    /* Add this CSS rule to your existing <style> block */
+footer {{
+    visibility: hidden;
+    display: none; /* Helps ensure no empty space is left behind */
+}}
+
 
  /* --- Mobile Specific Styles (Max width 600px) --- */
 @media (max-width: 600px) {{
