@@ -141,7 +141,7 @@ T_measured = T_c + 273.15      # K
 # ----------------------------
 refrigerants = ["R134a", "R404A", "R407C", "R410A", "R717", "R744", "R12", "R22", "R1234yf", "R1234ze", "R32",
                 "R417A", "R507", "R290", "R600a", "R718", "R1270"]
-tolerance = 1.0e5  #  ±1 bar(a) tolerance
+tolerance = 0.2e5  # ±0.2 bar
 
 # ----------------------------
 # Button Logic & Data Calculation
@@ -159,7 +159,7 @@ if st.button("Identifiera köldmedium"):
             # Phase estimation
             try:
                 T_sat = PropsSI("T", "P", P_measured, "Q", 1, ref)
-                if abs(T_measured - T_sat) <= 1:
+                if abs(T_measured - T_sat) < 2:
                     phase = "Mättad"
                 elif T_measured > T_sat:
                     phase = "Överhettad gas"
