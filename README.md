@@ -14,3 +14,4 @@ tryck- och temperaturjämförelse (PT-metod).
 - Python
 - Streamlit
 - CoolProp
+requirements.txt
