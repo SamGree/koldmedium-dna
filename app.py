@@ -87,6 +87,25 @@ div[data-testid="stNumberInput"] label {{
         padding: 20px;
         border-radius: 10px;
     }}
+
+ /* --- Mobile Specific Styles (Max width 600px) --- */
+@media (max-width: 600px) {{
+    .warning, .success, .info {{
+        padding: 8px 10px; /* Smaller padding for mobile */
+        font-size: 14px;   /* Smaller font for mobile */
+    }}
+    
+    div[data-testid="stNumberInput"] label {{
+        padding: 2px 4px; /* Smaller label padding for mobile */
+        font-size: 12px;
+    }}
+    
+    h1 {{
+        font-size: 24px; /* Adjust main title size for mobile */
+        padding: 10px;
+    }}
+}}
+   
 </style>
 """, unsafe_allow_html=True)
 
