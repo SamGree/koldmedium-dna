@@ -91,20 +91,22 @@ div[data-testid="stNumberInput"] label {{
  /* --- Mobile Specific Styles (Max width 600px) --- */
 @media (max-width: 600px) {{
     .warning, .success, .info {{
-        padding: 8px 10px; /* Smaller padding for mobile */
-        font-size: 14px;   /* Smaller font for mobile */
+        padding: 8px 10px;
+        font-size: 14px;
     }}
     
     div[data-testid="stNumberInput"] label {{
-        padding: 2px 4px; /* Smaller label padding for mobile */
+        padding: 2px 4px;
         font-size: 12px;
     }}
     
+    /* Make the H1 title significantly smaller on mobile */
     h1 {{
-        font-size: 24px; /* Adjust main title size for mobile */
-        padding: 10px;
+        font-size: 20px !important; /* Use !important to force override */
+        padding: 5px;
     }}
 }}
+
    
 </style>
 """, unsafe_allow_html=True)
