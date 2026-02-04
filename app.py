@@ -74,12 +74,12 @@ h1 {{
     padding-bottom: 20px;
     text-align: center;
 }}
-label {{
+div[data-testid="stNumberInput"] label {{
     background-color: #e8f0fe;
-    padding: 4px 4px;
-    border-radius: 6px;
-    display: inline;
-    width: 120px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-block;
+    width: fit-content;
 }}
 
 .st-key-info_box {{
