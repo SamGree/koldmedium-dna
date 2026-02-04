@@ -19,6 +19,7 @@ st.set_page_config(
 )
 
 # Load background image
+# NOTE: Ensure 'images/background.jpg' exists in your directory structure
 bg_image = get_base64_image("images/background.jpg")
 
 # ----------------------------
@@ -51,7 +52,6 @@ h1 {{
     padding-top: 20px;
     padding-bottom: 20px;
     font-weight: bold;
-    #border: 2px solid black;
     border-radius: 35px;
     background-color: white;
     text-align: center;
@@ -117,8 +117,9 @@ refrigerants = ["R134a", "R404A", "R407C", "R410A", "R717", "R744", "R12", "R22"
 tolerance = 1.0e5  #  ±1 bar(a) tolerance
 
 # ----------------------------
-# Button
+# Button Logic & Data Calculation
 # ----------------------------
+# This entire section runs only when the button is clicked
 if st.button("Identifiera köldmedium"):
     results = []
 
@@ -151,14 +152,16 @@ if st.button("Identifiera köldmedium"):
         except:
             pass
 
+    # 'df' and 'matches' are defined here
     df = pd.DataFrame(results)
-
-    # Matches within tolerance
     matches = df[abs(df["Differens (bar)"]) < tolerance / 1e5]
 
     # ----------------------------
-    # Output
+    # Output Sections (Moved Inside Button Block or use Session State)
+    # To fix the NameError permanently without using session state or 'in locals()', 
+    # we display the output immediately after calculation inside the 'if' block:
     # ----------------------------
+
     if matches.empty:
         st.markdown(
             "<p class='warning'>❌ Ingen träff – möjligt luft / icke-kondenserbara gaser</p>",
@@ -170,14 +173,19 @@ if st.button("Identifiera köldmedium"):
             unsafe_allow_html=True
         )
         st.dataframe(matches.reset_index(drop=True))
-
+    
     st.write("---")
-with st.container(key="info_box"):
-    st.markdown("### 📊 pt-jämförelse (alla köldmedier)")
-    st.dataframe(df.reset_index(drop=True))
-    st.markdown("""
-    **Viktigt:**
-    - PT-metoden ger endast indikation
-    - Blandningar och luft kan ge felvisning
-    - Säker identifiering kräver köldmedieidentifierare
-    """)
+
+    with st.container(key="info_box"):
+        st.markdown("### 📊 pt-jämförelse (alla köldmedier)")
+        st.dataframe(df.reset_index(drop=True))
+        st.markdown("""
+        **Viktigt:**
+        - PT-metoden ger endast indikation
+        - Blandningar och luft kan ge felvisning
+        - Säker identifiering kräver köldmedieidentifierare
+        """)
+
+# Note: The original code had the output sections outside the button block. 
+# Moving them inside this 'if' statement is the cleanest fix for the NameError. 
+# The output will now only appear after the user clicks "Identifiera köldmedium".
